@@ -36,6 +36,14 @@ export class SellerAddproductComponent {
             footer: 'Your product not added please try again later'
           })
         }
+      }, (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: 'Error occurs from server side'
+        })
+        console.log("server side error", error);
       }
     )
   }

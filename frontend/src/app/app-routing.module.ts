@@ -12,64 +12,70 @@ import { SearchComponent } from './search/search.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
 
   {
-    path:'',
-    component:HomeComponent
+    path: '',
+    component: HomeComponent
   },
 
   {
-    path:'seller',
-    component:SellerAuthComponent
+    path: 'seller',
+    component: SellerAuthComponent
   },
 
   {
-    path:'seller-home',
-    component:SellerHomeComponent,
-    canActivate: [AuthGuard]
+    path: 'seller-home',
+    component: SellerHomeComponent,
+    // canActivate: [AuthGuard]
   },
 
   {
-    path:'seller-addproduct',
-    component:SellerAddproductComponent,
-    canActivate: [AuthGuard]
+    path: 'seller-addproduct',
+    component: SellerAddproductComponent,
+    // canActivate: [AuthGuard]
   },
 
   {
-    path:'seller-productlist',
-    component:SellerProductlistComponent
+    path: 'seller-productlist',
+    component: SellerProductlistComponent
   },
 
   {
-    path:'seller-updateproduct/:id',
-    component:SellerUpdateproductComponent
+    path: 'seller-updateproduct/:id',
+    component: SellerUpdateproductComponent
   },
 
   {
-    path:'user-auth',
-    component:UserAuthComponent
+    path: 'contact',
+    component: ContactComponent
   },
 
   {
-    path:'search/:query',
-    component:SearchComponent
+    path: 'user',
+    component: UserAuthComponent
   },
 
   {
-    path:'details/:id',
-    component:ProductDetailsComponent
+    path: 'search/:query',
+    component: SearchComponent
   },
 
   {
-    path:'my-orders',
-    component:MyOrdersComponent
+    path: 'details/:id',
+    component: ProductDetailsComponent
   },
 
   {
-    path:'cart-page',
-    component:CartPageComponent
+    path: 'my-orders',
+    component: MyOrdersComponent
+  },
+
+  {
+    path: 'cart-page',
+    component: CartPageComponent
   }
 
 ];

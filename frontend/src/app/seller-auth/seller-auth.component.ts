@@ -25,14 +25,19 @@ export class SellerAuthComponent implements OnInit {
     this.seller.reloadseller();
 
     this.sellerSignup = this.formbuilder.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required, Validators.minLength(5), Validators.maxLength(20)]
+      // name: ['', Validators.required],
+      // email: ['', [Validators.required, Validators.email]],
+      // password: ['', Validators.required, Validators.minLength(5), Validators.maxLength(20)]
+      name: [''],
+      email: [''],
+      password: ['']
     })
 
     this.sellerlogin = this.formbuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required, Validators.minLength(5), Validators.maxLength(20)]
+      // email: ['', [Validators.required, Validators.email]],
+      // password: ['', Validators.required, Validators.minLength(5), Validators.maxLength(20)]
+      email: [''],
+      password: ['']
     })
   }
 
@@ -90,52 +95,34 @@ export class SellerAuthComponent implements OnInit {
   }
 
 
-  loginuser() {
-    this.http.get<any>('http://localhost:8000/sellerregister').subscribe(res => {
-      const user = res.find((a: any) => {
-        return a.email === this.sellerlogin.value.email && a.password === this.sellerlogin.value.password
-      })
-      if (user) {
-        this.seller.loginuser(user).subscribe(
-          (response) => {
-            console.log(response);
-            Swal.fire(
-              'Good job!',
-              'You login successfully!',
-              'success'
-            )
-            localStorage.setItem("Seller", JSON.stringify(user));
-            this.router.navigate(['seller-home']);
-          }, (error) => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: 'User login failed please try again'
-            })
-            localStorage.setItem("Seller", JSON.stringify(user));
-            this.router.navigate(['seller-home']);
-            console.log(error, "error");
-          }
-        )
-        this.router.navigate(['']);
-      } else {
+  loginuser(data: login) {
+    this.seller.loginuser(data).subscribe(
+      (response) => {
+        if (response) {
+          Swal.fire(
+            'Good job!',
+            'You login successfully!',
+            'success'
+          )
+          localStorage.setItem("Seller", JSON.stringify(response));
+          this.router.navigate(['seller-home']);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: 'Seller login failed please try again'
+          })
+        }
+      }, (error) => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Something went wrong!',
-          footer: 'Incorrect username or password'
+          footer: 'Incorrect credentials'
         })
+        console.error("Error during login:", error);
       }
-    }, (error) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: 'Error occurs from server side'
-      })
-      console.log(error, "error");
-    }
     )
   }
 

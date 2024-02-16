@@ -133,10 +133,11 @@ router.get("/userregister/:id", async (req, res) => {
 
 
 router.post("/userlogin", async (req, res) => {
+    let success = false
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).json({ error: "please fill all the fields properly" });
+        return res.status(400).json({ success, error: "please fill all the fields properly" });
     } else {
         try {
             const user = await Userregister.findOne({ email: email });
@@ -147,17 +148,19 @@ router.post("/userlogin", async (req, res) => {
                 if (ismatch) {
                     const token = await user.generateAuthToken();
                     console.log(token);
-                    return res.status(201).json({ token, message: "login successfully" });
+                    success = true
+                    return res.status(201).json({ success, message: "login successfully", token });
                 } else {
-                    return res.status(404).json({ error: "Invalid credentials" });
+                    success = false
+                    return res.status(404).json({ success, error: "Invalid credentials" });
                 }
 
             } else {
-                return res.status(401).json({ error: "Invalid credentials" });
+                return res.status(401).json({ success, error: "Invalid credentials" });
             }
         } catch (error) {
             console.log(error);
-            return res.status(500).json({ error: "Server side error occurs" });
+            return res.status(500).json({ success, error: "Server side error occurs" });
         }
 
     }
@@ -165,10 +168,11 @@ router.post("/userlogin", async (req, res) => {
 
 
 router.post("/sellerlogin", async (req, res) => {
+    let success = false
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(422).json({ error: "please fill all the fields" });
+        return res.status(400).json({ success, error: "please fill all the fields" });
     } else {
         try {
             const user = await Sellerregister.findOne({ email: email });
@@ -179,17 +183,19 @@ router.post("/sellerlogin", async (req, res) => {
                 if (ismatch) {
                     const token = await user.generateAuthToken();
                     console.log(token);
-                    return res.status(201).json({ token, message: "login successfully" });
+                    success = true
+                    return res.status(201).json({ success, message: "login successfully", token });
                 } else {
-                    return res.status(404).json({ error: "Invalid credentials" });
+                    success = false
+                    return res.status(404).json({ success, error: "Invalid credentials" });
                 }
 
             } else {
-                return res.status(401).json({ error: "Invalid credentials" });
+                return res.status(404).json({ success, error: "Invalid credentials" });
             }
         } catch (error) {
             console.log(error);
-            return res.status(500).json({ error: "Server side error occurs" });
+            return res.status(500).json({ success, error: "Server side error occurs" });
         }
     }
 })
@@ -218,26 +224,27 @@ router.get("/products/:id", async (req, res) => {
 
 router.post("/contact", async (req, res) => {
 
-    const { name, email, contact, message } = req.body;
+    const { name, email, phone, message } = req.body;
 
-    if (!name || !email || !contact || !message) {
-        return res.status(422).json({ error: "please fill all the fields properly" });
-    }
+    if (!name || !email || !phone || !message) {
+        return res.status(400).json({ error: "please fill all the fields properly" });
+    } else {
 
-    try {
+        try {
+            const detail = new Contact({ name, email, phone, message });
 
-        const detail = new Contact({ name, email, contact, message });
+            const detailssaved = await detail.save();
 
-        const detailssaved = await detail.save();
+            if (detailssaved) {
+                return res.status(201).json({ message: "your contact details received successfully" });
+            } else {
+                return res.status(404).json({ error: "error occurs please try again later" });
+            }
 
-        if (detailssaved) {
-            return res.status(201).json({ message: "your contact details received successfully" });
-        } else {
-            return res.status(500).json({ error: "error occurs please try again later" });
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ error: "Server side error occurs" });
         }
-
-    } catch (error) {
-        console.log(error);
     }
 
 })
@@ -248,7 +255,7 @@ router.post("/product", async (req, res) => {
     const { name, price, catagory, color, image, desc } = req.body;
 
     if (!name || !price || !catagory || !color || !image || !desc) {
-        return res.status(422).json({ error: "please fill all the fields properly" });
+        return res.status(400).json({ error: "please fill all the fields properly" });
     }
 
     try {
@@ -260,11 +267,12 @@ router.post("/product", async (req, res) => {
         if (productsaved) {
             return res.status(201).json({ message: "your product saved successfully" });
         } else {
-            return res.status(500).json({ error: "error occurs please try again later" });
+            return res.status(404).json({ error: "error occurs please try again later" });
         }
 
     } catch (error) {
         console.log(error);
+        return res.status(500).json({ error: "Server side error occurs" });
     }
 
 })

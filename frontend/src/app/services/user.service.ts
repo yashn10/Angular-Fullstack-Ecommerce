@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { login, signup } from '../datatype';
+import { contacts, login, signup } from '../datatype';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -20,6 +20,11 @@ export class UserService {
 
   userlogin(data: login) {
     return this.http.post('http://localhost:8000/userlogin', data)
+  }
+
+
+  usercontact(data: contacts) {
+    return this.http.post('http://localhost:8000/contact', data);
   }
 
 }

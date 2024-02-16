@@ -11,12 +11,12 @@ import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { SellerAddproductComponent } from './seller-addproduct/seller-addproduct.component';
 import { SellerProductlistComponent } from './seller-productlist/seller-productlist.component';
 import { SellerUpdateproductComponent } from './seller-updateproduct/seller-updateproduct.component';
-// import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { UserAuthComponent } from './user-auth/user-auth.component';
 import { SearchComponent } from './search/search.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { CartPageComponent } from './cart-page/cart-page.component';
     SearchComponent,
     ProductDetailsComponent,
     MyOrdersComponent,
-    CartPageComponent
+    CartPageComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +40,6 @@ import { CartPageComponent } from './cart-page/cart-page.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // MDBBootstrapModule.forRoot()
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

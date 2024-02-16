@@ -27,7 +27,7 @@ export class AppComponent {
         if (val.url) {
           if (localStorage.getItem('Seller')) {
             let sellerinfo = localStorage.getItem('Seller')
-            let sellerdata = sellerinfo && JSON.parse(sellerinfo)[0]
+            let sellerdata = sellerinfo && JSON.parse(sellerinfo)
             this.sellername = sellerdata.name;
             this.menutype = 'seller';
           }
@@ -45,7 +45,7 @@ export class AppComponent {
         }
       }
     )
-    
+
 
     let cartdata = localStorage.getItem('cart');
     if (cartdata) {
@@ -101,7 +101,7 @@ export class AppComponent {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, logout!'
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem('Seller')
@@ -124,11 +124,11 @@ export class AppComponent {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, logout!'
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem('User')
-        this.router.navigate(['user-auth'])
+        this.router.navigate(['user'])
         Swal.fire(
           'Logout!',
           'You have been successfully logout!',

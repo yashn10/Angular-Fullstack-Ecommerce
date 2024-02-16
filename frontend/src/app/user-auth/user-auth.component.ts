@@ -22,7 +22,7 @@ export class UserAuthComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('User')) {
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
     }
 
     this.loginForm = this.formbuilder.group({
@@ -89,52 +89,35 @@ export class UserAuthComponent implements OnInit {
   }
 
 
-  loginuser() {
-    this.http.get<any>('http://localhost:8000/userregister').subscribe(res => {
-      const user = res.find((a: any) => {
-        return a.email === this.loginForm.value.email
-      })
-      if (user) {
-        // this.loginForm.reset;
-        this.user.userlogin(user).subscribe(
-          (response) => {
-            console.log(response);
-            Swal.fire(
-              'Good job!',
-              'You login successfully!',
-              'success'
-            )
-            localStorage.setItem("User", JSON.stringify(user.email));
-            this.router.navigate(['/']);
-          }, (error) => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: 'User login failed please try again'
-            })
-            localStorage.setItem("User", JSON.stringify(user.email));
-            console.log(error, "error");
-          }
-        )
-        this.router.navigate(['']);
-      } else {
+  loginuser(data: login) {
+    this.user.userlogin(data).subscribe(
+      (response) => {
+        if (response) {
+          Swal.fire(
+            'Good job!',
+            'You login successfully!',
+            'success'
+          )
+          localStorage.setItem("User", JSON.stringify(response));
+          console.log("User login successfully");
+          this.router.navigate(['']);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: 'User login failed please try again'
+          })
+        }
+      }, (error) => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Something went wrong!',
-          footer: 'Incorrect username or password'
+          footer: 'Incorrect credentials'
         })
+        console.error("Error during login:", error);
       }
-    }, (error) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: 'Error occurs from server side'
-      })
-      console.log(error, "error");
-    }
     )
   }
 

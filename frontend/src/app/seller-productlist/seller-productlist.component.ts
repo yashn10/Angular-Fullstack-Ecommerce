@@ -79,7 +79,6 @@ export class SellerProductlistComponent implements OnInit {
   products() {
     this.service.productslist().subscribe(
       (products) => {
-        console.warn(products)
         this.productlist = products;
       }
     )

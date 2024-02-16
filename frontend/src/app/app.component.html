@@ -26,10 +26,10 @@
         <a class="nav-link" routerLink="/" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/user-auth">User Login</a>
+        <a class="nav-link" href="#" routerLink="user">User Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/seller" href="#">Seller Login</a>
+        <a class="nav-link" routerLink="seller" href="#">Seller Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="cart-page">Cart({{cart}})</a>
@@ -38,10 +38,10 @@
 
     <ul class="navbar-nav ml-auto" *ngSwitchCase="'seller'">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/seller-addproduct" href="#">Add Product</a>
+        <a class="nav-link" routerLink="seller-addproduct" href="#">Add Product</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/seller-productlist" href="#">Product List</a>
+        <a class="nav-link" routerLink="seller-productlist" href="#">Product List</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="logout()">Logout</a>
@@ -57,13 +57,16 @@
         <a class="nav-link" routerLink="/" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/seller-productlist" href="#">Product List</a>
+        <a class="nav-link" routerLink="seller-productlist">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="contact">Contact Us</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="userlogout()">Logout</a>
       </li>
       <li class="nav-item">
-        <a><img src="http://source.unsplash.com/50x50/?nature" alt="seller" style="border-radius: 40px;"></a>
+        <a><img src="http://source.unsplash.com/50x50/?nature" alt="Seller Name" style="border-radius: 40px;"></a>
         <a>{{username | titlecase}}</a>
       </li>
       <li class="nav-item">
