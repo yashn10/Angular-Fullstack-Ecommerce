@@ -1,0 +1,45 @@
+<body>
+
+    <div class="container contact-form">
+        <div class="contact-image">
+            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
+        </div>
+        <form #addproduct="ngForm" (ngSubmit)="update(addproduct.value)">
+            <h3>Update your product</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" ngModel="{{product?.name}}"
+                            placeholder="Product Name *" />
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="price" class="form-control" ngModel="{{product?.price}}"
+                            placeholder="Product price *" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="catagory" class="form-control" ngModel="{{product?.catagory}}"
+                            placeholder="Product catagory *" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="color" class="form-control" ngModel="{{product?.color}}"
+                            placeholder="Product color *" />
+                    </div>
+                    <div class="form-group">
+                        <input type="url" name="image" class="form-control" ngModel="{{product?.image}}"
+                            placeholder="Upload image *" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="btnSubmit" class="btnContact" value="update" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea name="desc" class="form-control" ngModel="{{product?.desc}}"
+                            placeholder="Product description *" style="width: 100%; height: 255px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>

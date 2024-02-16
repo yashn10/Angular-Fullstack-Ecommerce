@@ -1,0 +1,166 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <a class="navbar-brand" href="#" routerLink="/">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <form class="form-inline my-2 my-lg-0" *ngIf="menutype == 'not seller' ">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" #searchresult aria-label="Search"
+      (keyup)="search($event)" (blur)="clear()">
+    <ul *ngIf="searchitem">
+      <li style="float: left; padding: 6px 10px; border: 1px solid gray;" *ngFor="let product of searchitem">
+        <a style="color: black; font-size: 20px; cursor: pointer;"
+          (mousedown)="details(product._id)">{{product.name}}</a>
+      </li>
+    </ul>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+      (click)="searchproduct(searchresult.value)">Search</button>
+  </form>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="menutype">
+
+    <ul class="navbar-nav ml-auto" *ngSwitchCase="''">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/user-auth">User Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/seller" href="#">Seller Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="cart-page">Cart({{cart}})</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngSwitchCase="'seller'">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/seller-addproduct" href="#">Add Product</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/seller-productlist" href="#">Product List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a><img src="http://source.unsplash.com/50x50/?nature" alt="seller" style="border-radius: 40px;"></a>
+        <a>{{sellername | titlecase}}</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngSwitchCase="'user'">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/seller-productlist" href="#">Product List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="userlogout()">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a><img src="http://source.unsplash.com/50x50/?nature" alt="seller" style="border-radius: 40px;"></a>
+        <a>{{username | titlecase}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="cart-page">Cart({{cart}})</a>
+      </li>
+    </ul>
+
+  </div>
+
+</nav>
+
+
+<router-outlet></router-outlet>
+
+
+<footer class="text-center text-lg-start bg-light text-muted" style="padding: 20px 0px;">
+
+  <section class="d-flex justify-content-center p-4 border-bottom">
+
+    <div class="me-5 d-none d-lg-block">
+      <span>Our Social Networks Information:</span>
+    </div>
+
+  </section>
+
+
+  <section>
+    <div class="container text-center text-md-start mt-5">
+
+      <div class="row mt-3">
+
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Contact Info:
+          </h6>
+          <p>
+            Here you can contact us anytime for any query, we are available for our customers 24/7.
+          </p>
+        </div>
+
+
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <h6 class="text-uppercase fw-bold mb-4">
+            Services
+          </h6>
+          <p>
+            <a routerLink="donor" class="text-reset">Donate blood</a>
+          </p>
+          <p>
+            <a routerLink="receiver" class="text-reset">Receive blood</a>
+          </p>
+          <p>
+            <a routerLink="information" class="text-reset">Blood information</a>
+          </p>
+          <p>
+            <a routerLink="pharmacy" class="text-reset">Online pharmacy</a>
+          </p>
+        </div>
+
+
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a routerLink="logout" class="text-reset">Logout</a>
+          </p>
+          <p>
+            <a routerLink="dashboard" class="text-reset">Dashboard</a>
+          </p>
+          <p>
+            <a routerLink="donation-camp" class="text-reset">Camps</a>
+          </p>
+          <p>
+            <a routerLink="contact" class="text-reset">Contact us</a>
+          </p>
+        </div>
+
+
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i></i> Nagpur, Maharashtra, India </p>
+          <p>
+            <i></i>
+            <!-- info@example.com -->
+          </p>
+          <p><i></i> + 91 222 555 888</p>
+          <p><i></i> + 91 444 888 111</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</footer>

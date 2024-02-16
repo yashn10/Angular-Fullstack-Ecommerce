@@ -1,0 +1,118 @@
+nav ul li a {
+    text-align: center;
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+nav {
+    background-color: #f8f6f6;
+}
+
+nav .collapse ul {
+    width: 100%;
+    justify-content: center;
+}
+
+nav .collapse ul li {
+    width: 10%;
+}
+
+nav form ul {
+    position: absolute;
+    margin-top: 12%;
+    z-index: 1;
+    width: 25%;
+    margin-right: 160px;
+    padding: 0;
+    display: grid;
+    background-color: white;
+    list-style: none;
+}
+
+nav .container-fluid ul li a .mega-grid .mega-child-div {
+    border-right: 1px solid black;
+}
+
+nav .container-fluid ul li img {
+    width: 30%;
+}
+
+nav .container-fluid ul li a .mega-grid .mega-child-div a:hover {
+    text-decoration: none;
+    background-color: rgb(231, 231, 238);
+    padding: 5px 0px;
+    border-radius: 10px;
+}
+
+nav ul li a .mega-drop {
+    position: absolute;
+    background-color: #f8f6f6;
+    border-radius: 5px;
+    transform: translateX(-45%);
+    box-shadow: rgba(149, 157, 165, 0.2) 10px 15px 15px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s linear;
+    top: 4rem;
+}
+
+nav ul li a:hover .mega-drop {
+    visibility: visible;
+    opacity: 1;
+    top: 4rem;
+}
+
+nav .collapse ul li a:hover {
+    background-color: rgb(231, 231, 238);
+    color: black;
+    border-radius: 25px;
+}
+
+.nav a:hover {
+    background-color: rgb(252, 103, 4);
+    padding: 10px 15px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+}
+
+.card:hover {
+    background-color: rgb(79, 90, 187);
+    transition-delay: 0s;
+    transition-duration: 1s;
+    color: white;
+}
+
+.sticky-top {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.8);
+}
+
+.card-body img {
+    width: 100px;
+}
+
+.card-body {
+    box-shadow: 0px 1px 3px 0px;
+    height: 350px;
+}
+
+button {
+    padding: 6px 15px;
+    border-radius: 5px
+}
+
+hr {
+    // width: 100px;
+    border-top: 2px solid rgb(66 69 183);
+}
+
+form {
+    width: 100%;
+    justify-content: center;
+}
+
+form input {
+    width: 40%;
+}

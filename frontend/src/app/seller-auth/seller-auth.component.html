@@ -1,0 +1,114 @@
+<body>
+
+
+    <div class="container" *ngIf="islogin == false">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sign Up</h3>
+                    <hr>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="sellerSignup" (ngSubmit)="signup(sellerSignup.value)">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="enter name" formControlName="name"
+                                name="name" minlength="3" maxlength="50" required>
+                        </div>
+                        <p *ngIf="sellerSignup.get('name')!.invalid && sellerSignup.get('name')!.touched">please enter
+                            valid value</p>
+                        <div class="input-group form-group mt-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="email" class="form-control" placeholder="enter email" formControlName="email"
+                                name="email" email required>
+                        </div>
+                        <p *ngIf="sellerSignup.get('email')!.invalid && sellerSignup.get('email')!.touched">please enter
+                            valid value</p>
+                        <div class="input-group form-group mt-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="enter password"
+                                formControlName="password" name="password" minlength="5" maxlength="20" required>
+                        </div>
+                        <p *ngIf="sellerSignup.get('password')!.invalid && sellerSignup.get('password')!.touched">please
+                            enter valid value</p>
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn login_btn" type="submit"
+                                [disabled]="sellerSignup.invalid">Signup</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Already have account?<a (click)="login()">Login</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" *ngIf="islogin == true">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Login</h3>
+                    <hr>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="sellerlogin" (ngSubmit)="loginuser()">
+                        <div class="input-group form-group mt-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="email" class="form-control" placeholder="enter email" formControlName="email"
+                                name="email" email required>
+                        </div>
+                        <p *ngIf="sellerlogin.get('email')!.invalid && sellerlogin.get('email')!.touched">please enter
+                            valid value</p>
+                        <div class="input-group form-group mt-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="enter password"
+                                formControlName="password" name="password" minlength="5" maxlength="20" required>
+                        </div>
+                        <p *ngIf="sellerlogin.get('password')!.invalid && sellerlogin.get('password')!.touched">please
+                            enter valid value</p>
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn login_btn" type="submit" [disabled]="sellerlogin.invalid">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Don't have an account?<a (click)="signupnow()">Sign Up</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>

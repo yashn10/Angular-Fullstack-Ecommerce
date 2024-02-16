@@ -1,0 +1,30 @@
+<table class="table text-center my-5">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Color</th>
+            <th scope="col">Catagory</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of productlist, let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.color}}</td>
+            <td>{{product.catagory}}</td>
+            <td>{{product.desc}}</td>
+            <td style="width: 25%;"><img src="{{product.image}}" style="width: 40%;"></td>
+            <td>
+                <button type="submit" class="btn btn-outline-warning mx-1"
+                    routerLink="/seller-updateproduct/{{product._id}}">Update</button>
+                <button type="submit" class="btn btn-outline-danger mx-1" (click)="delete(product._id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
