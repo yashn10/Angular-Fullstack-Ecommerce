@@ -9,20 +9,20 @@ const bcrypt = require('bcryptjs');
 
 router.post("/sellerregister", async (req, res) => {
 
-    const { name, email, password } = req.body;
+    const { name, email, phone, address, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !phone || !address) {
         return res.status(400).json({ error: "please fill all the fields" });
     }
 
     try {
 
-        const userexist = await Sellerregister.findOne({ email: email, password: password });
+        const userexist = await Sellerregister.findOne({ email: email });
 
         if (userexist) {
             return res.status(401).json({ error: "user already exists" });
         } else {
-            const user = new Sellerregister({ name, email, password });
+            const user = new Sellerregister({ name, email, phone, address, password });
 
             const saveuser = await user.save();
 
@@ -43,9 +43,9 @@ router.post("/sellerregister", async (req, res) => {
 
 router.post("/userregister", async (req, res) => {
 
-    const { name, email, password } = req.body;
+    const { name, email, phone, address, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !phone || !address) {
         return res.status(400).json({ error: "please fill all the fields" });
     }
 
@@ -56,7 +56,7 @@ router.post("/userregister", async (req, res) => {
         if (userexist) {
             return res.status(401).json({ error: "user already exists" });
         } else {
-            const user = new Userregister({ name, email, password });
+            const user = new Userregister({ name, email, phone, address, password });
 
             const saveuser = await user.save();
 

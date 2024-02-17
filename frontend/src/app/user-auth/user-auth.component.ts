@@ -33,59 +33,58 @@ export class UserAuthComponent implements OnInit {
     this.sellerSignup = this.formbuilder.group({
       name: [''],
       email: [''],
+      phone: [''],
+      address: [''],
       password: ['']
     })
   }
 
 
   signup(data: signup) {
-    this.http.get<any>("http://localhost:8000/userregister").subscribe((res) => {
-      const user = res.find((a: any) => {
-        return a.email === this.sellerSignup.value.email && a.password === this.sellerSignup.value.password
-      })
-      if (user) {
+    this.user.usersignup(data).subscribe(
+      (response) => {
+        if (response) {
+          console.log("userdata", response);
+          this.clear();
+          Swal.fire({
+            title: 'Successfull',
+            text: "Your registration has been successfull!",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'proceed to login!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.islogin = true;
+            }
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: 'User registration failed please try again later'
+          })
+        }
+      }, (error) => {
         Swal.fire({
           icon: 'warning',
           title: 'Oops...',
-          text: 'User already exists with this email or password',
-          footer: 'Please choose a different email or login'
+          text: 'User already exists with same credentials',
+          footer: 'User registration failed please try again'
         })
-      } else {
-        this.user.usersignup(data).subscribe(
-          (userdata) => {
-            console.log("userdata", userdata);
-            Swal.fire({
-              title: 'Successfull',
-              text: "Your registration has been successfull!",
-              icon: 'success',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'proceed to login!'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                this.islogin = true;
-              }
-            })
-          }
-        ), Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: 'User registration failed please try again later'
-        })
+        console.log("error", error);
       }
-    }, (error) => {
+    ), (error: any) => {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Something went wrong!',
         footer: 'Error occurs from server side please try again'
       })
-      console.log(error, "error");
+      console.log("error", error);
     }
-    )
-
   }
 
 
@@ -129,6 +128,11 @@ export class UserAuthComponent implements OnInit {
 
   login() {
     this.islogin = true
+  }
+
+
+  clear() {
+    this.sellerSignup.reset();
   }
 
 }

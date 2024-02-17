@@ -24,6 +24,7 @@
                         </div>
                         <p *ngIf="sellerSignup.get('name')!.invalid && sellerSignup.get('name')!.touched">Name should be
                             of atleast 5 characters</p>
+
                         <div class="input-group form-group mt-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -33,6 +34,27 @@
                         </div>
                         <p *ngIf="sellerSignup.get('email')!.invalid && sellerSignup.get('email')!.touched">Please enter
                             valid email value</p>
+
+                        <div class="input-group form-group mt-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="enter phone" formControlName="phone"
+                                name="phone" required>
+                        </div>
+                        <p *ngIf="sellerSignup.get('phone')!.invalid && sellerSignup.get('phone')!.touched">Please enter
+                            valid contacts</p>
+
+                        <div class="input-group form-group mt-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="enter address"
+                                formControlName="address" name="address" required>
+                        </div>
+                        <p *ngIf="sellerSignup.get('address')!.invalid && sellerSignup.get('address')!.touched">Please
+                            your address</p>
+
                         <div class="input-group form-group mt-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>

@@ -13,7 +13,6 @@ export class CartPageComponent implements OnInit {
 
 
   productlist: any[] | undefined
-  // details: details | undefined
 
   constructor(private service: ProductsService, private router: Router) { }
 
@@ -47,6 +46,39 @@ export class CartPageComponent implements OnInit {
         });
       }
     });
+  }
+
+
+  buy(id: any) {
+    let login = localStorage.getItem('User');
+
+    if (login) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to order this item!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, order now!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Successfull!",
+            text: "Your order has been placed successfully.",
+            icon: "success"
+          });
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: 'User login required'
+      })
+    }
+
   }
 
 }

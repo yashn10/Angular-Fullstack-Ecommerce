@@ -25,17 +25,14 @@ export class SellerAuthComponent implements OnInit {
     this.seller.reloadseller();
 
     this.sellerSignup = this.formbuilder.group({
-      // name: ['', Validators.required],
-      // email: ['', [Validators.required, Validators.email]],
-      // password: ['', Validators.required, Validators.minLength(5), Validators.maxLength(20)]
       name: [''],
       email: [''],
+      phone: [''],
+      address: [''],
       password: ['']
     })
 
     this.sellerlogin = this.formbuilder.group({
-      // email: ['', [Validators.required, Validators.email]],
-      // password: ['', Validators.required, Validators.minLength(5), Validators.maxLength(20)]
       email: [''],
       password: ['']
     })
@@ -43,55 +40,50 @@ export class SellerAuthComponent implements OnInit {
 
 
   signup(data: signup) {
-    this.http.get<any>("http://localhost:8000/sellerregister").subscribe(res => {
-      const seller = res.find((a: any) => {
-        return a.email === this.sellerSignup.value.email && a.password === this.sellerSignup.value.password
-      })
-      if (seller) {
+    this.seller.usersignup(data).subscribe(
+      (response) => {
+        if (response) {
+          console.log("Seller", response);
+          this.clear();
+          Swal.fire({
+            title: 'Successfull',
+            text: "Your registration has been successfull!",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'proceed to login!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.islogin = true;
+            }
+          })
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Seller already exists with this credentials',
+            footer: 'Please choose a different credentials or login with existing credentials'
+          })
+        }
+      }, (error) => {
         Swal.fire({
           icon: 'warning',
           title: 'Oops...',
-          text: 'User already exists with this email or password',
-          footer: 'Please choose a different email or login with existing email'
+          text: 'Seller already available with same credentials',
+          footer: 'Seller signup failed'
         })
-      } else {
-        this.seller.usersignup(data).subscribe(
-          (response) => {
-            console.log("user", response);
-            Swal.fire({
-              title: 'Successfull',
-              text: "Your registration has been successfull!",
-              icon: 'success',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'proceed to login!'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                this.islogin = true;
-              }
-            })
-          }, (error) => {
-            Swal.fire({
-              icon: 'warning',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: 'Seller registration failed please try again later'
-            })
-            console.log(error);
-          }
-        )
+        console.log("error", error);
       }
-    }, (error) => {
+    ), (error: any) => {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Something went wrong!',
         footer: 'Error occurs from server side please try again'
       })
-      console.log(error, "error");
+      console.log("error", error);
     }
-    )
   }
 
 
@@ -136,5 +128,9 @@ export class SellerAuthComponent implements OnInit {
     this.islogin = false
   }
 
+
+  clear() {
+    this.sellerSignup.reset();
+  }
 
 }

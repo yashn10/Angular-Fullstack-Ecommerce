@@ -16,6 +16,17 @@ const SellerregisterSchema = new mongoose.Schema({
         unique: true
     },
 
+    phone: {
+        type: Number,
+        require: true,
+        unique: true
+    },
+
+    address: {
+        type: String,
+        require: true
+    },
+
     password: {
         type: String,
         require: true,
