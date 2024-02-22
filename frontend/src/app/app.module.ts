@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { SellerAuthComponent } from './seller-auth/seller-auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { SellerAddproductComponent } from './seller-addproduct/seller-addproduct.component';
 import { SellerProductlistComponent } from './seller-productlist/seller-productlist.component';
 import { SellerUpdateproductComponent } from './seller-updateproduct/seller-updateproduct.component';
@@ -17,13 +16,13 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { ContactComponent } from './contact/contact.component';
+import { UserProductsComponent } from './user-products/user-products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SellerAuthComponent,
-    SellerHomeComponent,
     SellerAddproductComponent,
     SellerProductlistComponent,
     SellerUpdateproductComponent,
@@ -32,7 +31,8 @@ import { ContactComponent } from './contact/contact.component';
     ProductDetailsComponent,
     MyOrdersComponent,
     CartPageComponent,
-    ContactComponent
+    ContactComponent,
+    UserProductsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,6 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SellerAuthComponent } from './seller-auth/seller-auth.component';
-import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { AuthGuard } from './auth.guard';
 import { SellerAddproductComponent } from './seller-addproduct/seller-addproduct.component';
 import { SellerProductlistComponent } from './seller-productlist/seller-productlist.component';
@@ -13,6 +12,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { ContactComponent } from './contact/contact.component';
+import { UserProductsComponent } from './user-products/user-products.component';
 
 const routes: Routes = [
 
@@ -27,12 +27,6 @@ const routes: Routes = [
   },
 
   {
-    path: 'seller-home',
-    component: SellerHomeComponent,
-    // canActivate: [AuthGuard]
-  },
-
-  {
     path: 'seller-addproduct',
     component: SellerAddproductComponent,
     // canActivate: [AuthGuard]
@@ -41,6 +35,11 @@ const routes: Routes = [
   {
     path: 'seller-productlist',
     component: SellerProductlistComponent
+  },
+
+  {
+    path: 'user-products',
+    component: UserProductsComponent
   },
 
   {

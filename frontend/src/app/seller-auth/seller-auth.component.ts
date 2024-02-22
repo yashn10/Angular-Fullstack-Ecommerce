@@ -97,7 +97,7 @@ export class SellerAuthComponent implements OnInit {
             'success'
           )
           localStorage.setItem("Seller", JSON.stringify(response));
-          this.router.navigate(['seller-home']);
+          this.router.navigate(['seller-productlist']);
         } else {
           Swal.fire({
             icon: 'error',

@@ -57,7 +57,7 @@
         <a class="nav-link" routerLink="/" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="seller-productlist">Products</a>
+        <a class="nav-link" routerLink="user-products">Products</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="contact">Contact Us</a>
@@ -93,7 +93,7 @@
   </section>
 
 
-  <section>
+  <section [ngSwitch]="menutype">
     <div class="container text-center text-md-start mt-5">
 
       <div class="row mt-3">
@@ -109,39 +109,33 @@
         </div>
 
 
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" *ngSwitchCase="'user'">
 
           <h6 class="text-uppercase fw-bold mb-4">
             Services
           </h6>
           <p>
-            <a routerLink="donor" class="text-reset">Donate blood</a>
+            <a routerLink="donor" class="text-reset">Fast delievery</a>
           </p>
           <p>
-            <a routerLink="receiver" class="text-reset">Receive blood</a>
+            <a routerLink="receiver" class="text-reset">Online payment</a>
           </p>
           <p>
-            <a routerLink="information" class="text-reset">Blood information</a>
-          </p>
-          <p>
-            <a routerLink="pharmacy" class="text-reset">Online pharmacy</a>
+            <a routerLink="pharmacy" class="text-reset">Waranty of 1 year</a>
           </p>
         </div>
 
 
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4" *ngSwitchCase="'user'">
 
           <h6 class="text-uppercase fw-bold mb-4">
             Useful links
           </h6>
           <p>
-            <a routerLink="logout" class="text-reset">Logout</a>
+            <a routerLink="" (click)="userlogout()" class="text-reset">Logout</a>
           </p>
           <p>
-            <a routerLink="dashboard" class="text-reset">Dashboard</a>
-          </p>
-          <p>
-            <a routerLink="donation-camp" class="text-reset">Camps</a>
+            <a routerLink="user-products" class="text-reset">Products</a>
           </p>
           <p>
             <a routerLink="contact" class="text-reset">Contact us</a>
