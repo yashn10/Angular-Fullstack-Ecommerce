@@ -42,11 +42,12 @@ router.post("/sellerregister", async (req, res) => {
 
 
 router.post("/userregister", async (req, res) => {
+    let success = false
 
     const { name, email, phone, address, password } = req.body;
 
     if (!name || !email || !password || !phone || !address) {
-        return res.status(400).json({ error: "please fill all the fields" });
+        return res.status(400).json({ success, error: "please fill all the fields" });
     }
 
     try {
@@ -54,22 +55,24 @@ router.post("/userregister", async (req, res) => {
         const userexist = await Userregister.findOne({ email: email });
 
         if (userexist) {
-            return res.status(401).json({ error: "user already exists" });
+            return res.status(401).json({ success, error: "user already exists" });
         } else {
             const user = new Userregister({ name, email, phone, address, password });
 
             const saveuser = await user.save();
 
             if (saveuser) {
-                return res.status(201).json({ message: "user registered successfully" });
+                let success = true
+                return res.status(201).json({ success, message: "user registered successfully" });
             } else {
-                return res.status(401).json({ error: "user registration failed" });
+                let success = false
+                return res.status(401).json({ success, error: "user registration failed" });
             }
         }
 
     } catch (error) {
         console.log("error", error);
-        return res.status(500).json({ error: "Internal Server Error" });
+        return res.status(500).json({ success, error: "Internal Server Error" });
     }
 
 })
@@ -223,11 +226,12 @@ router.get("/products/:id", async (req, res) => {
 
 
 router.post("/contact", async (req, res) => {
+    let success = false
 
     const { name, email, phone, message } = req.body;
 
     if (!name || !email || !phone || !message) {
-        return res.status(400).json({ error: "please fill all the fields properly" });
+        return res.status(400).json({ success, error: "please fill all the fields properly" });
     } else {
 
         try {
@@ -236,14 +240,16 @@ router.post("/contact", async (req, res) => {
             const detailssaved = await detail.save();
 
             if (detailssaved) {
-                return res.status(201).json({ message: "your contact details received successfully" });
+                let success = true
+                return res.status(201).json({ success, message: "your contact details received successfully" });
             } else {
-                return res.status(404).json({ error: "error occurs please try again later" });
+                let success = false
+                return res.status(404).json({ success, error: "error occurs please try again later" });
             }
 
         } catch (error) {
             console.log(error);
-            return res.status(500).json({ error: "Server side error occurs" });
+            return res.status(500).json({ success, error: "Server side error occurs" });
         }
     }
 
@@ -251,30 +257,44 @@ router.post("/contact", async (req, res) => {
 
 
 router.post("/product", async (req, res) => {
+    let success = false
 
-    const { name, price, catagory, color, image, desc } = req.body;
+    const { name, price, catagory, image, desc } = req.body;
 
-    if (!name || !price || !catagory || !color || !image || !desc) {
-        return res.status(400).json({ error: "please fill all the fields properly" });
+    if (!name || !price || !catagory || !image || !desc) {
+        return res.status(400).json({ success, error: "please fill all the fields properly" });
     }
 
     try {
 
-        const product = new Product({ name, price, catagory, color, image, desc })
+        const product = new Product({ name, price, catagory, image, desc })
 
         const productsaved = await product.save();
 
         if (productsaved) {
-            return res.status(201).json({ message: "your product saved successfully" });
+            let success = true
+            return res.status(201).json({ success, message: "your product saved successfully" });
         } else {
-            return res.status(404).json({ error: "error occurs please try again later" });
+            let success = false
+            return res.status(404).json({ success, error: "error occurs please try again later" });
         }
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: "Server side error occurs" });
+        return res.status(500).json({ success, error: "Server side error occurs" });
     }
 
+})
+
+
+router.delete("/product/:id", async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const product = await Product.findByIdAndDelete(_id);
+        res.status(201).send(product);
+    } catch (error) {
+        console.log("error", error);
+    }
 })
 
 
