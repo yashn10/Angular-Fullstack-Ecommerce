@@ -14,7 +14,7 @@ export class ProductsService {
 
 
   addproduct(data: addproducts) {
-    return this.http.post('http://localhost:8000/products', data);
+    return this.http.post('http://localhost:8000/product', data);
   }
 
   productslist() {
@@ -30,7 +30,7 @@ export class ProductsService {
   }
 
   updateproduct(data: addproducts) {
-    return this.http.put<addproducts>(`http://localhost:8000/products/${data._id}`, data);
+    return this.http.patch<addproducts>(`http://localhost:8000/product/${data._id}`, data);
   }
 
   popularproducts() {

@@ -298,4 +298,19 @@ router.delete("/product/:id", async (req, res) => {
 })
 
 
+router.patch("/product/:id", async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const product = await Product.findByIdAndUpdate(_id, req.body, {
+            new: true
+        });
+        res.send(product);
+        console.log(product);
+
+    } catch (err) {
+        console.status(400).log(err);
+    }
+})
+
+
 module.exports = router;
