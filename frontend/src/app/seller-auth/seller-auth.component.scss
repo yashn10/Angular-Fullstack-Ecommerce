@@ -32,29 +32,12 @@ hr {
 .card {
     height: 580px;
     margin-bottom: 30px;
-    width: 500px;
-    background-color: rgba(0, 0, 0, 0.5) !important;
-}
-
-.social_icon span {
-    font-size: 60px;
-    margin-left: 10px;
-    color: #FFC312;
-}
-
-.social_icon span:hover {
-    color: white;
-    cursor: pointer;
+    width: 400px;
+    background-color: rgb(60 60 60) !important;
 }
 
 .card-header h3 {
     color: white;
-}
-
-.social_icon {
-    position: absolute;
-    right: 20px;
-    top: -45px;
 }
 
 .input-group-prepend span {

@@ -28,14 +28,14 @@ export class AppComponent {
           if (localStorage.getItem('Seller')) {
             let sellerinfo = localStorage.getItem('Seller')
             let sellerdata = sellerinfo && JSON.parse(sellerinfo)
-            this.sellername = sellerdata.name;
+            this.sellername = sellerdata.user.name;
             this.menutype = 'seller';
           }
 
           else if (localStorage.getItem('User')) {
             let userinfo = localStorage.getItem('User');
             let userdata = userinfo && JSON.parse(userinfo);
-            this.username = userdata.name;
+            this.username = userdata.user.name;
             this.menutype = 'user';
           }
 

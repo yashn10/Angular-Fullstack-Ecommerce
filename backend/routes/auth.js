@@ -150,9 +150,9 @@ router.post("/userlogin", async (req, res) => {
 
                 if (ismatch) {
                     const token = await user.generateAuthToken();
-                    console.log(token);
+                    // console.log(token);
                     success = true
-                    return res.status(201).json({ success, message: "login successfully", token });
+                    return res.status(201).json({ success, message: "login successfully", user });
                 } else {
                     success = false
                     return res.status(404).json({ success, error: "Invalid credentials" });
@@ -185,9 +185,9 @@ router.post("/sellerlogin", async (req, res) => {
 
                 if (ismatch) {
                     const token = await user.generateAuthToken();
-                    console.log(token);
+                    // console.log(token);
                     success = true
-                    return res.status(201).json({ success, message: "login successfully", token });
+                    return res.status(201).json({ success, message: "login successfully", user });
                 } else {
                     success = false
                     return res.status(404).json({ success, error: "Invalid credentials" });

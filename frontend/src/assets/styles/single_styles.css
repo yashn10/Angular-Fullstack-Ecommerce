@@ -1113,7 +1113,7 @@ section
 .add_to_cart_button
 {
 	width: 160px;
-	margin-left: 19px;
+	/* margin-left: 19px; */
 	font-size: 12px !important;
 }
 .product_favorite

@@ -14,7 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class UserAuthComponent implements OnInit {
 
 
-  islogin = false;
+  islogin = true;
   loginForm!: FormGroup
   sellerSignup!: FormGroup
 

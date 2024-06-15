@@ -19,7 +19,7 @@ export class SellerAuthComponent implements OnInit {
 
   constructor(private seller: SellerService, private router: Router, private http: HttpClient, private formbuilder: FormBuilder) { }
 
-  islogin = false
+  islogin = true
 
   ngOnInit(): void {
     this.seller.reloadseller();
