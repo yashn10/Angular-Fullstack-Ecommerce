@@ -1,78 +1,82 @@
 <div class="container contact_container" style="margin-top: 15%;">
 
 
-    <div class="container" *ngIf="islogin == false">
-        <div class="d-flex justify-content-center h-100">
-            <div class="card">
-                <div class="card-header">
+    <div class="container" style="margin-top: 15%;" *ngIf="!islogin">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="card shadow-lg border-0 rounded">
+                <div class="card-header bg-dark text-white text-center">
                     <h3>Seller Signup</h3>
-                    <hr>
+                    <hr class="my-2">
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form [formGroup]="sellerSignup" (ngSubmit)="signup(sellerSignup.value)">
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" id="name" class="form-control" placeholder="Enter name"
+                                    formControlName="name" minlength="5" maxlength="50" required>
                             </div>
-                            <input type="text" class="form-control" placeholder="enter name" formControlName="name"
-                                name="name" minlength="3" maxlength="50" required>
+                            <p *ngIf="sellerSignup.get('name')!.invalid && sellerSignup.get('name')!.touched"
+                                class="text-danger mt-1">Name should be at least 5 characters</p>
                         </div>
-                        <p *ngIf="sellerSignup.get('name')!.invalid && sellerSignup.get('name')!.touched">please enter
-                            valid value</p>
 
-                        <div class="input-group form-group mt-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" id="email" class="form-control" placeholder="Enter email"
+                                    formControlName="email" email required>
                             </div>
-                            <input type="email" class="form-control" placeholder="enter email" formControlName="email"
-                                name="email" email required>
+                            <p *ngIf="sellerSignup.get('email')!.invalid && sellerSignup.get('email')!.touched"
+                                class="text-danger mt-1">Please enter a valid email</p>
                         </div>
-                        <p *ngIf="sellerSignup.get('email')!.invalid && sellerSignup.get('email')!.touched">please enter
-                            valid value</p>
 
-                        <div class="input-group form-group mt-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        <div class="form-group mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <input type="number" id="phone" class="form-control" placeholder="Enter phone"
+                                    formControlName="phone" required>
                             </div>
-                            <input type="number" class="form-control" placeholder="enter phone" formControlName="phone"
-                                name="phone" minlength="10" maxlength="10" required>
+                            <p *ngIf="sellerSignup.get('phone')!.invalid && sellerSignup.get('phone')!.touched"
+                                class="text-danger mt-1">Please enter a valid phone number</p>
                         </div>
-                        <p *ngIf="sellerSignup.get('phone')!.invalid && sellerSignup.get('phone')!.touched">please enter
-                            valid value</p>
 
-                        <div class="input-group form-group mt-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        <div class="form-group mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                <input type="text" id="address" class="form-control" placeholder="Enter address"
+                                    formControlName="address" required>
                             </div>
-                            <input type="text" class="form-control" placeholder="enter address"
-                                formControlName="address" name="address" minlength="10" maxlength="50" required>
+                            <p *ngIf="sellerSignup.get('address')!.invalid && sellerSignup.get('address')!.touched"
+                                class="text-danger mt-1">Please enter your address</p>
                         </div>
-                        <p *ngIf="sellerSignup.get('address')!.invalid && sellerSignup.get('address')!.touched">please
-                            enter
-                            valid value</p>
 
-                        <div class="input-group form-group mt-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        <div class="form-group mb-4">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" id="password" class="form-control" placeholder="Enter password"
+                                    formControlName="password" minlength="5" maxlength="20" required>
                             </div>
-                            <input type="password" class="form-control" placeholder="enter password"
-                                formControlName="password" name="password" minlength="5" maxlength="20" required>
+                            <p *ngIf="sellerSignup.get('password')!.invalid && sellerSignup.get('password')!.touched"
+                                class="text-danger mt-1">Password should be at least 5 characters long</p>
                         </div>
-                        <p *ngIf="sellerSignup.get('password')!.invalid && sellerSignup.get('password')!.touched">please
-                            enter valid value</p>
 
-                        <div class="form-group" style="text-align: center;">
-                            <button class="btn login_btn" type="submit"
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary" type="submit"
                                 [disabled]="sellerSignup.invalid">Signup</button>
                         </div>
                     </form>
                 </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center links">
-                        Already have account?<a (click)="login()">Login</a>
+                <div class="card-footer bg-dark text-white text-center">
+                    <div class="d-flex justify-content-center mb-2">
+                        Already have an account? <a (click)="login()" class="text-light ml-2">Login</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="#">Forgot your password?</a>
+                        <a href="" class="text-light">Forgot your password?</a>
                     </div>
                 </div>
             </div>
@@ -80,44 +84,50 @@
     </div>
 
 
-    <div class="container" *ngIf="islogin == true">
-        <div class="d-flex justify-content-center h-100">
-            <div class="card">
-                <div class="card-header">
+    <div class="container" *ngIf="islogin">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="card shadow-lg border-0 rounded">
+                <div class="card-header bg-dark text-white text-center">
                     <h3>Seller Login</h3>
-                    <hr>
+                    <hr class="my-2">
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form [formGroup]="sellerlogin" (ngSubmit)="loginuser(sellerlogin.value)">
-                        <div class="input-group form-group mt-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        <div class="form-group mb-3">
+                            <label for="login-email" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" id="login-email" class="form-control" placeholder="Enter email"
+                                    name="email" formControlName="email" email required>
                             </div>
-                            <input type="email" class="form-control" placeholder="enter email" formControlName="email"
-                                name="email" email required>
+                            <p *ngIf="sellerlogin.get('email')!.invalid && sellerlogin.get('email')!.touched"
+                                class="text-danger mt-1">Please enter a valid email</p>
                         </div>
-                        <p *ngIf="sellerlogin.get('email')!.invalid && sellerlogin.get('email')!.touched">please enter
-                            valid value</p>
-                        <div class="input-group form-group mt-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+
+                        <div class="form-group mb-4">
+                            <label for="login-password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" id="login-password" class="form-control"
+                                    placeholder="Enter password" name="password" formControlName="password"
+                                    minlength="5" maxlength="20" required>
                             </div>
-                            <input type="password" class="form-control" placeholder="enter password"
-                                formControlName="password" name="password" minlength="5" maxlength="20" required>
+                            <p *ngIf="sellerlogin.get('password')!.invalid && sellerlogin.get('password')!.touched"
+                                class="text-danger mt-1">Password should be at least 5 characters long</p>
                         </div>
-                        <p *ngIf="sellerlogin.get('password')!.invalid && sellerlogin.get('password')!.touched">please
-                            enter valid value</p>
-                        <div class="form-group" style="text-align: center;">
-                            <button class="btn login_btn" type="submit" [disabled]="sellerlogin.invalid">Login</button>
+
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary" type="submit"
+                                [disabled]="sellerlogin.invalid">Login</button>
                         </div>
                     </form>
                 </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center links">
-                        Don't have an account?<a (click)="signupnow()">Sign Up</a>
+                <div class="card-footer bg-dark text-white text-center">
+                    <div class="d-flex justify-content-center mb-2">
+                        Don't have an account? <a (click)="signupnow()" class="text-light ml-2">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="#">Forgot your password?</a>
+                        <a href="" class="text-light">Forgot your password?</a>
                     </div>
                 </div>
             </div>

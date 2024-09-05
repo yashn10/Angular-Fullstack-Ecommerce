@@ -1,17 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Numans');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
+/* Base styles */
 html,
 body {
-    background-image: url('https://source.unsplash.com/1800x1000/?nature, mountains, oceans');
+    background-image: url('https://source.unsplash.com/1800x1000/?dark,abstract');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
-    padding: 77px 0px;
-    font-family: 'Numans', sans-serif;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
 }
 
 p {
-    color: red;
+    color: #f44336;
 }
 
 button:disabled {
@@ -19,73 +22,138 @@ button:disabled {
 }
 
 hr {
-    border: 1px solid #ffc312;
+    border: 1px solid #ff5722;
     width: 30%;
-    float: left;
+    margin: 0 auto;
 }
 
 .container {
-    height: 100%;
-    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 77px);
 }
 
 .card {
-    height: 580px;
-    margin-bottom: 30px;
     width: 400px;
-    background-color: rgb(60 60 60) !important;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 0.6s ease-out forwards;
+}
+
+.card-header {
+    background-color: #333;
+    border-bottom: 1px solid #444;
 }
 
 .card-header h3 {
-    color: white;
+    color: #fff;
+    margin: 0;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    position: relative;
 }
 
 .input-group-prepend span {
-    width: 50px;
-    background-color: #FFC312;
-    color: black;
-    border: 0 !important;
+    width: 40px;
+    background-color: #ff5722;
+    color: #fff;
+    border: 0;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
-input:focus {
-    outline: 0 0 0 0 !important;
-    box-shadow: 0 0 0 0 !important;
+.input-group-prepend i {
+    font-size: 16px;
+    line-height: 1.5;
+}
 
+/* Input focus animation */
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.5);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transform: scale(1.02);
+}
+
+input::placeholder {
+    color: #bbb;
+    transition: opacity 0.3s ease;
+}
+
+input:focus::placeholder {
+    opacity: 0;
 }
 
 .remember {
-    color: white;
+    color: #bbb;
 }
 
 .remember input {
     width: 20px;
     height: 20px;
-    margin-left: 15px;
+    margin-left: 5px;
     margin-right: 5px;
 }
 
 .login_btn {
     margin-top: 20px;
-    color: black;
-    background-color: #FFC312;
-    width: 100px;
+    color: #fff;
+    background-color: #ff5722;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .login_btn:hover {
-    color: black;
-    background-color: white;
+    background-color: #fff;
+    color: #ff5722;
+    transform: scale(1.05);
 }
 
 .links {
-    color: white;
+    color: #bbb;
 }
 
 .links a {
-    margin-left: 4px;
-    color: blue;
+    color: #ff5722;
     cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .links a:hover {
+    color: #fff;
     text-decoration: underline;
+}
+
+/* Keyframes for card animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-label {
+    color: white;
+}
+
+.input-group-text {
+    width: 6%;
+    color: white;
 }
