@@ -12,19 +12,22 @@ export class UserService {
 
   // isloginerror = new EventEmitter<boolean>(false)
 
+  renderurl = 'https://angular-fullstack-ecommerce.onrender.com';
+  localhosturl = 'http://localhost:8000';
+
 
   usersignup(data: signup) {
-    return this.http.post('http://localhost:8000/userregister', data)
+    return this.http.post(`${this.renderurl}/userregister`, data)
   }
 
 
   userlogin(data: login) {
-    return this.http.post('http://localhost:8000/userlogin', data)
+    return this.http.post(`${this.renderurl}/userlogin`, data)
   }
 
 
   usercontact(data: contacts) {
-    return this.http.post('http://localhost:8000/contact', data);
+    return this.http.post(`${this.renderurl}/contact`, data);
   }
 
 }

@@ -16,8 +16,11 @@ export class SellerService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  renderurl = 'https://angular-fullstack-ecommerce.onrender.com';
+  localhosturl = 'http://localhost:8000';
+
   usersignup(data: signup) {
-    return this.http.post("http://localhost:8000/sellerregister", data);
+    return this.http.post(`${this.renderurl}/sellerregister`, data);
   }
 
   // loginuser(data: login) {
@@ -36,7 +39,7 @@ export class SellerService {
   // }
 
   loginuser(data: any) {
-    return this.http.post("http://localhost:8000/sellerlogin", data);
+    return this.http.post(`${this.renderurl}/sellerlogin`, data);
   }
 
   reloadseller() {

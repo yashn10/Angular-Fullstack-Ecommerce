@@ -3,15 +3,14 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dotenv = require("dotenv");
-dotenv.config({ path:'./config.env' });
+dotenv.config({ path: './config.env' });
 const port = process.env.PORT;
 
 require('./db/db');
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8000", "https://angular-fullstack-ecommerce.onrender.com");
     res.header("Access-Control-Allow-Methods: GET,POST,OPTIONS,DELETE,PUT");
-    res.header("Access-Control-Allow-Origin' 'http://localhost:4200' always");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 })

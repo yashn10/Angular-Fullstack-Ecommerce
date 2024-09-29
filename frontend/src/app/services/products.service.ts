@@ -12,33 +12,36 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
+  renderurl = 'https://angular-fullstack-ecommerce.onrender.com';
+  localhosturl = 'http://localhost:8000';
+
 
   addproduct(data: addproducts) {
-    return this.http.post('http://localhost:8000/product', data);
+    return this.http.post(`${this.renderurl}/product`, data);
   }
 
   productslist() {
-    return this.http.get<addproducts[]>('http://localhost:8000/products');
+    return this.http.get<addproducts[]>(`${this.renderurl}/products`);
   }
 
   deleteproduct(id: number) {
-    return this.http.delete(`http://localhost:8000/product/${id}`);
+    return this.http.delete(`${this.renderurl}/product/${id}`);
   }
 
   getproduct(id: string) {
-    return this.http.get<addproducts>(`http://localhost:8000/products/${id}`);
+    return this.http.get<addproducts>(`${this.renderurl}/products/${id}`);
   }
 
   updateproduct(data: addproducts) {
-    return this.http.patch<addproducts>(`http://localhost:8000/product/${data._id}`, data);
+    return this.http.patch<addproducts>(`${this.renderurl}/product/${data._id}`, data);
   }
 
   popularproducts() {
-    return this.http.get<addproducts[]>('http://localhost:8000/products/?_limit=3');
+    return this.http.get<addproducts[]>(`${this.renderurl}/products/?_limit=3`);
   }
 
   searchproduct(query: string) {
-    return this.http.get<addproducts[]>(`http://localhost:8000/products/?q=${query}`)
+    return this.http.get<addproducts[]>(`${this.renderurl}/products/?q=${query}`)
   }
 
   addtocartdata(data: addproducts) {
